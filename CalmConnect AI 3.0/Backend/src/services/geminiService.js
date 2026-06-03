@@ -70,7 +70,7 @@ const getAIResponse = async (newMessage, history, currentUser) => {
     const chatHistory = convertMessagesToHistory(history);
 
     const chat = ai.chats.create({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-3.1-flash-lite',
         config: {
             systemInstruction: fullSystemInstruction,
         },
@@ -95,7 +95,7 @@ const getChatTitle = async (history) => {
 
     try {
         const response = await ai.models.generateContent({
-            model: 'gemini-3-flash-preview',
+            model: 'gemini-3.1-flash-lite',
             contents: prompt,
         });
         return response.text.trim().replace(/^"|"$/g, '');
@@ -128,7 +128,7 @@ const getJournalingPrompt = async (moodHistory, chatHistory, theme = 'General') 
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-3.1-flash-lite',
       contents: prompt,
     });
     return response.text.trim();
