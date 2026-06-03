@@ -1,352 +1,307 @@
-# CalmConnect AI - Full-Stack Mental Health Companion
+# CalmConnect AI 3.0
 
-CalmConnect AI is an empathetic, enterprise-grade, full-stack mental health and wellness platform designed to bridge the gap between AI-driven self-care and professional clinical support. The platform provides patients with real-time AI counseling, structured wellness tracking, and secure direct consultation channels with licensed psychiatrists, all backed by an administrative auditing dashboard.
+CalmConnect AI 3.0 is a full-stack mental health and wellness platform that combines AI-supported self-care, mood and journal tracking, CBT tools, appointment management, direct messaging, community support, and administrator controls.
 
----
+The repository is organized as two separate workspaces:
 
-## ✨ Core Platforms & Capabilites
+- `Frontend` - React 19, TypeScript, and Vite single-page application.
+- `Backend` - Node.js, Express, PostgreSQL, Gemini, authentication, email, and REST API services.
 
-### 1. Patient Wellness Engine
-*   **Empathetic AI Companion**: A conversational assistant powered by the official `@google/genai` SDK. Supports continuous dialogue, context-aware advice, and cognitive-behavioral insights.
-*   **Mood Journal & Analytics**: Log daily emotional spectrums (1-5 scale) with details, mapping progression trends over time with visual chart widgets built using `Recharts`.
-*   **CBT Toolkit (Cognitive Behavioral Therapy)**:
-    *   **Thought Records**: A guided, multi-step structural framework to challenge, reframe, and deconstruct negative automatic patterns.
-    *   **Interactive Exercises**: A multimedia guided library for deep breathing, muscle relaxation, and mindfulness, complete with a countdown player.
-    *   **AI-Generated Prompts**: Real-time personalized reflection cues synthesized by Google Gemini based on the user's ongoing conversation logs and mood records.
-*   **Streaks & Achievements**: Tracks consistent engagement with an automatic daily streak engine, awarding special recognition badges (e.g. *Wellness Pioneer*, *Reflection Master*).
-*   **Community Forums**: Secure, optional anonymous forums where users can share wellness questions, answer posts, and read supportive comments.
-*   **Transactional Notifications**: Alerts for messaging receipts, appointment statuses, and daily wellness notifications.
-*   **Crisis Safety Railings**: A persistent, highly visible emergency banner rendering immediate national hotline resources and local clinical coordinates.
+> CalmConnect AI is a support and wellness tool. It is not a substitute for emergency care, diagnosis, or treatment from a qualified mental health professional.
 
-### 2. Psychiatrist Clinical Hub
-*   **Relationship Directory**: An intuitive interface listing assigned patient clinical profiles and logs.
-*   **Calendar & Appointment Scheduling**: Manage patient consultations, request appointments, list pending check-ins, and mark diagnostic sessions as completed or canceled.
-*   **Outbound Messaging Gateways**: Initiate secure direct messaging threads with active individuals.
+## Features
 
-### 3. Administrative Control Panel
-*   **Practitioner Registry**: Secure onboarding procedures to verify, register, and activate licensed psychiatrists.
-*   **Site Telemetry Logs**: Historical security audits displaying system access milestones, such as successful authorizations and logs of user activities.
-*   **User State Administration**: Access to block, unblock, or review pending accounts.
-*   **Report & Feedback Triage**: View feedback submissions, review user safety alerts or reports, and change their statuses (e.g. *resolved*, *pending*).
-*   **Secure Account Purging**: Execute patient-initiated account deletion protocols after reviewing background details.
+### Patient Experience
 
----
+- AI mental health companion powered through Google Gemini.
+- Mood tracker with mood history and charting.
+- Private journaling and AI-assisted journal prompts.
+- CBT thought records for reframing negative thoughts.
+- Guided exercises for breathing, mindfulness, and relaxation.
+- Appointment tracking with psychiatrists.
+- Direct patient-psychiatrist messaging.
+- Notifications for messages, appointments, and account events.
+- Community forum posts and comments.
+- Emergency support banner with Pakistan-focused crisis resources.
 
-## 🚀 Technical Stack & Architecture
+### Psychiatrist Experience
+
+- Psychiatrist dashboard.
+- Patient profile access.
+- Appointment scheduling and status updates.
+- Direct messaging with patients.
+
+### Admin Experience
+
+- Admin dashboard.
+- User management.
+- Psychiatrist onboarding.
+- Activity logs.
+- Feedback dashboard.
+- Report review and status management.
+
+## Tech Stack
 
 ### Frontend
-*   **Runtime Environment**: React 19 with Vite
-*   **Type Safety**: TypeScript 5+
-*   **Visual Styling**: Tailwind CSS (Utility-first, fluid layout)
-*   **Interactive Transitions**: Framer Motion (Micro-interactions, staggered fade-in animations)
-*   **Data Visualization**: Recharts (Modern SVG-rendered mood analytics)
-*   **Asset Icons**: Lucide React
+
+- React 19
+- TypeScript
+- Vite
+- Framer Motion / Motion
+- Recharts
+- Lucide React
+- Axios
 
 ### Backend
-*   **Server Framework**: Node.js & Express
-*   **Persistent Storage**: PostgreSQL (Configured with connection pool capabilities via `pg`)
-*   **Authentication & Security**: Stateful JSON Web Tokens (JWT) & bcrypt.js cryptography
-*   **AI Integrations**: Server-side Google Gemini models (`gemini-2.5-flash`) for chat, feedback assessment, and personalized prompt generation.
-*   **Transactional Emailing**: Nodemailer with SMTP integration for confirmation codes, password resets, and appointment updates.
 
----
+- Node.js
+- Express
+- PostgreSQL with `pg`
+- JWT authentication
+- bcrypt password hashing
+- Nodemailer SMTP email
+- Google Gemini via `@google/genai`
+- Nodemon for development
 
-## 📂 Repository File Tree
+## Current Directory Structure
 
+```text
+CalmConnect AI 3.0/
+|-- README.md
+|-- .gitignore
+|-- Backend/
+|   |-- package.json
+|   |-- package-lock.json
+|   |-- schema.sql
+|   `-- src/
+|       |-- index.js
+|       |-- app.js
+|       |-- api/
+|       |   |-- index.js
+|       |   |-- appointmentRoutes.js
+|       |   |-- authRoutes.js
+|       |   |-- cbtRoutes.js
+|       |   |-- chatRoutes.js
+|       |   |-- conversationRoutes.js
+|       |   |-- feedbackRoutes.js
+|       |   |-- forumRoutes.js
+|       |   |-- journalRoutes.js
+|       |   |-- moodRoutes.js
+|       |   |-- motivationRoutes.js
+|       |   |-- notificationRoutes.js
+|       |   |-- reportRoutes.js
+|       |   `-- userRoutes.js
+|       |-- controllers/
+|       |   |-- appointmentController.js
+|       |   |-- authController.js
+|       |   |-- cbtController.js
+|       |   |-- chatController.js
+|       |   |-- conversationController.js
+|       |   |-- feedbackController.js
+|       |   |-- forumController.js
+|       |   |-- journalController.js
+|       |   |-- moodController.js
+|       |   |-- motivationController.js
+|       |   |-- notificationController.js
+|       |   |-- reportController.js
+|       |   `-- userController.js
+|       |-- middleware/
+|       |   `-- auth.js
+|       `-- services/
+|           |-- cryptoService.js
+|           |-- db.js
+|           |-- emailService.js
+|           |-- geminiService.js
+|           |-- initDb.js
+|           `-- motivationService.js
+`-- Frontend/
+    |-- package.json
+    |-- package-lock.json
+    |-- index.html
+    |-- index.tsx
+    |-- App.tsx
+    |-- types.ts
+    |-- vite.config.ts
+    |-- tsconfig.json
+    |-- metadata.json
+    |-- public/
+    |   `-- logo.svg
+    |-- components/
+    |   |-- admin/
+    |   |-- appointments/
+    |   |-- dashboards/
+    |   |-- AuthView.tsx
+    |   |-- CbtView.tsx
+    |   |-- ChatView.tsx
+    |   |-- EmergencyBanner.tsx
+    |   |-- ForumView.tsx
+    |   |-- GuidedExercisesView.tsx
+    |   |-- JournalView.tsx
+    |   |-- Layout.tsx
+    |   |-- MessagingView.tsx
+    |   |-- MoodTrackerView.tsx
+    |   |-- NotificationsView.tsx
+    |   |-- OnboardingView.tsx
+    |   |-- ProfileView.tsx
+    |   |-- ResetPasswordView.tsx
+    |   |-- Sidebar.tsx
+    |   |-- ThemeToggle.tsx
+    |   `-- VerificationView.tsx
+    |-- data/
+    |   |-- exercises.ts
+    |   `-- seed.ts
+    |-- hooks/
+    |   |-- useLocalStorage.ts
+    |   `-- useTheme.ts
+    `-- utils/
+        |-- password.ts
+        `-- validation.ts
 ```
-├── /                       # Client-side SPA Workspace
-│   ├── src/
-│   │   ├── components/     # Modulized UI assets and components
-│   │   │   ├── admin/      # Activity auditing, User management, Feedback widgets
-│   │   │   ├── appointments/# Consultation organizers & Modals
-│   │   │   ├── dashboards/ # Custom Patient, Specialist, and Admin views
-│   │   │   └── ...         # Shell architecture and features
-│   │   ├── data/           # Offline datasets (breathing exercises)
-│   │   ├── hooks/          # Domain hooks (theme switching, local storage)
-│   │   ├── types.ts        # Shared TypeScript interfaces & types
-│   │   ├── App.tsx         # Main router and controller wrapper
-│   │   └── index.tsx       # Entry point
-│   ├── package.json        
-│   └── vite.config.ts      
-│
-└── /backend                # Express API Backend Workspace
-    ├── src/
-    │   ├── api/            # Router configurations and endpoint divisions
-    │   ├── controllers/    # API controllers
-    │   ├── middleware/     # JWT Authorization protocols
-    │   ├── services/       # Core business logic (Gemini, Mail, Postgres setup)
-    │   └── index.js        # Main startup script
-    └── package.json        
-```
 
----
+## Prerequisites
 
-## 🏁 Installation & Development Build Setup
+- Node.js 18 or newer
+- npm
+- PostgreSQL database
+- Google Gemini API key
+- SMTP account for verification, reset, and notification emails
 
-### Prerequisites
-*   **Node.js**: `v18.0.0` or higher
-*   **npm**: `v9.0.0` or higher
-*   **PostgreSQL**: A running instance (local, Docker, or managed cloud instance)
+## Backend Setup
 
----
+Open a terminal in the backend workspace:
 
-### Step 1: Backend Database & Environment Configuration
-
-Navigate to the `/backend` directory and install the server-side dependencies:
 ```bash
-cd backend
+cd "CalmConnect AI 3.0/Backend"
 npm install
 ```
 
-Configure your environment. Create a `.env` file within the `/backend` folder using the model below:
+Create `Backend/.env`:
 
 ```env
-# Server Ingress Port
 PORT=3001
-
-# PostgreSQL Storage Connection String
 DATABASE_URL="postgresql://user:password@host:5432/calmconnect"
 
-# Cryptographic Token Signer
-JWT_SECRET="generate_a_secure_long_random_string_here"
-JWT_EXPIRES_IN="7d"
+JWT_SECRET="replace_with_a_long_random_secret"
+JWT_EXPIRES_IN="15m"
 
-# Google Gemini API Credentials
-API_KEY="AIzaSyYourGeminiApiKeyHere"
+API_KEY="your_google_gemini_api_key"
 
-# Nodemailer Outbound SMTP Settings (Verification & Password Resets)
-SMTP_HOST="smtp.mailtrap.io"
+SMTP_HOST="smtp.example.com"
 SMTP_PORT=587
-SMTP_USER="smtp_username_here"
-SMTP_PASS="smtp_password_here"
+SMTP_USER="smtp_username"
+SMTP_PASS="smtp_password"
 EMAIL_FROM='"CalmConnect AI" <noreply@calmconnect.ai>'
 
-# Core Frontend Address (used in registration email verification hyperlinks)
 FRONTEND_URL="http://localhost:3000"
 ```
 
-#### Self-Initializing Database Schema
-The SQL database is configured to **initialize and update automatically** when the backend starts.
-Upon server boot, `/backend/src/services/initDb.js` runs queries to:
-1. Generate key tables if they do not yet exist (`user_streaks`, `badges`, `user_badges`, `daily_quotes`, `feedback`, `reports`, `forum_posts`, `forum_comments`, etc.).
-2. Inject system badges such as `First Reflection` (`first_journal`), `Consistency Starter` (`streak_3`), `Week of Wellness` (`streak_7`), and *Mindful Navigator* (`cbt_master`).
-3. Seed daily wisdom and motivational quotes automatically.
-4. Dynamically append user profile adjustments (age, emergency contact fields, specialization tags, qualifications).
+Start the backend:
 
-To start the backend development server with hot-reloading:
 ```bash
 npm run dev
 ```
-The server will bind to `http://localhost:3001`.
 
----
+The API runs at:
 
-### Step 2: Frontend Client Configuration
+```text
+http://localhost:3001
+```
 
-Return to the root workspace directory and install the React packages:
+The backend calls `src/services/initDb.js` on startup to initialize required database objects and seed application data.
+
+## Frontend Setup
+
+Open a second terminal in the frontend workspace:
+
 ```bash
-cd ..
+cd "CalmConnect AI 3.0/Frontend"
 npm install
 ```
 
-You do not need many configurations for the client; the application relies on the backend route proxy for secret management. Create an environmental config file `.env` in the root folder to supply client-specific values:
+Create `Frontend/.env` if you want the Vite client to expose a Gemini key through the current Vite config:
 
 ```env
-# Exposed client keys (Optional client-direct fallback configurations)
-VITE_GEMINI_API_KEY="AIzaSyYourGeminiApiKeyHere"
+GEMINI_API_KEY="your_google_gemini_api_key"
 ```
 
-Start the Vite client development engine:
+Start the frontend:
+
 ```bash
 npm run dev
 ```
-The frontend is built to run on `http://localhost:3000`.
 
----
+The Vite app runs at:
 
-## 📖 Complete API Route Index
-
-All REST routes are prefixed by `/api`. Headers must submit a valid `Authorization: Bearer <JWT_TOKEN>` header once logged in.
-
-### 🔑 Authorization (`/api/auth`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `POST` | `/register` | Public | Submits entry form parameters to register a patient. Writes database profile and fires confirmation email. |
-| `POST` | `/login` | Public | Validates login and hands back a session JWT. |
-| `POST` | `/refresh` | Public | Exchanges a valid, unexpired database-stored refresh token for a newly-minted JWT access token. |
-| `GET` | `/verify-email` | Public | Validates a verification token and activates the account. |
-| `POST` | `/resend-verification` | Public | Regenerates and resends user activation links. |
-| `POST` | `/forgot-password` | Public | Sends a secure password recovery message. |
-| `POST` | `/reset-password` | Public | Sets a new secure user password based on a recovery token. |
-| `POST` | `/logout` | Auth | Securely ends active user sessions. |
-
-### 👤 User Services (`/api/users`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `GET` | `/` | Auth | Recovers active database directory lists. |
-| `GET` | `/me` | Auth | Fetches full info of the active user profile. |
-| `PUT` | `/me` | Auth | Modifies settings, details, or password credentials. |
-| `POST` | `/me/request-deletion` | Auth | Requests permanent profile deletion and queues for review. |
-| `POST` | `/psychiatrist` | Admin | Onboards a qualified practitioner. |
-| `PUT` | `/:id/status` | Admin | Restricts or reactivates specific accounts. |
-| `DELETE` | `/:id` | Admin | Purges user database records entirely. |
-| `GET` | `/activity-logs` | Admin | Fetches administrative login and audit trails. |
-
-### 💬 AI Companion Chat (`/api/chat`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `GET` | `/sessions` | Auth (Patient) | Returns historic AI conversation lists. |
-| `POST` | `/sessions` | Auth (Patient) | Instantiates a conversation and fetches the initial AI response. |
-| `PUT` | `/sessions/:sessionId` | Auth (Patient) | Renames an existing chat session. |
-| `DELETE` | `/sessions/:sessionId` | Auth (Patient) | Deletes a conversation session. |
-| `POST` | `/sessions/:sessionId/messages` | Auth (Patient) | Appends messages to a conversation and queries Gemini. |
-| `PUT` | `/messages/:messageId/feedback` | Auth (Patient) | Submits feedback on AI answers (likes/dislikes). |
-
-### 📅 Consultation Management (`/api/appointments`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `GET` | `/` | Auth | Retrieves scheduled consulting history. |
-| `POST` | `/` | Psychiatrist | Coordinates and schedules consult sessions. |
-| `PUT` | `/:id/cancel` | Auth (Participants) | Cancels upcoming consultations. |
-| `PUT` | `/:id/complete` | Auth (Participants) | Marks an appointment as completed. |
-| `PUT` | `/seen` | Auth (Patient) | Clears new appointment alerts. |
-
-### 🔔 Notifications Panel (`/api/notifications`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `GET` | `/` | Auth | Fetches inbox reminders and receipts. |
-| `POST` | `/:id/read` | Auth | Marks a specific notification as read. |
-| `POST` | `/read-all` | Auth | Marks all notifications as read. |
-| `DELETE` | `/:id` | Auth | Deletes a notification. |
-
-### ✉️ Direct Messages (`/api/conversations`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `GET` | `/` | Auth | Lists all current direct consultations. |
-| `POST` | `/messages` | Auth | Dispatches messages to clinicians or patients. |
-| `PUT` | `/:conversationId/read` | Auth | Updates message thread receipts. |
-
-### 🛠️ Wellness Toolkit (`/api/mood`, `/api/journal`, `/api/cbt`, `/api/feedback`, `/api/reports`)
-| Method | Route | Access | Purpose |
-|:---|:---|:---|:---|
-| `GET` | `/mood` | Auth | Fetches emotional logs. |
-| `POST` | `/mood` | Auth | Inserts current mood registers. |
-| `GET` | `/journal` | Auth | Retrieves private journal logs. |
-| `POST` | `/journal` | Auth | Inserts new diary notes. |
-| `PUT` | `/journal/:id` | Auth | Updates past entries. |
-| `DELETE` | `/journal/:id` | Auth | Deletes journal articles. |
-| `GET` | `/cbt/thoughts` | Auth | Fetches completed CBT thought records. |
-| `POST` | `/cbt/thoughts` | Auth | Inserts a new thought Challenger loop record. |
-| `PUT` | `/cbt/thoughts/:id` | Auth | Modifies existing CBT reports. |
-| `DELETE` | `/cbt/thoughts/:id` | Auth | Deletes a CBT entry. |
-| `POST` | `/cbt/journal-prompt` | Auth | Generates a custom writing prompt with Gemini. |
-| `POST` | `/feedback` | Auth | Submits system feedback logs. |
-| `GET` | `/feedback` | Admin | Fetches user satisfaction inputs. |
-| `POST` | `/reports` | Auth | Files support warnings or system issues. |
-| `GET` | `/reports` | Admin | Audits unresolved report tickets. |
-| `PUT` | `/reports/:id/status` | Admin | Resolves filed tickets. |
-
-
-
----
-
-## 🔐 Access Token & Refresh Token Flow
-
-This application is equipped with a highly secure status-aware Token Rotation refresh mechanism:
-- **Access Tokens (JWT)**: Short-lived tokens (expires in `15m` by default, customizable via `JWT_EXPIRES_IN`) stored in the client's `localStorage` for authenticating daily API transactions.
-- **Refresh Tokens (Opaque Cryptographic)**: Long-lived tokens (valid for `7 days` / 168 hours) stored securely in the PostgreSQL database within the `calmconnect.refresh_tokens` table. They are exchanged seamlessly under the hood when access tokens expire.
-
-### 🛡️ Why we do NOT need an Environment Variable for the Refresh Token
-A typical environment variable like `JWT_SECRET` is used for **stateless signing & verification** of JWT access tokens. However, **Refresh Tokens** do not need a cryptographic environment signature key because:
-1. They are generated as **opaque, highly secure, cryptographically random strings** (`crypto.randomBytes(40).toString('hex')`) instead of JWT structures.
-2. They are verified through **database lookups** rather than cryptographic signatures.
-3. This is **immensely more secure**: If a user is blocked or deletes their account, the server can instantly delete their refresh tokens from the database, immediately invalidating any malicious session—a feat impossible with stateless signed tokens.
-
----
-
-### 🗄️ Database Schema: Creating the `refresh_tokens` Table
-To instantiate the required table under the `calmconnect` schema manually, run the following SQL query:
-
-```sql
--- Schema Scope: calmconnect
-CREATE TABLE IF NOT EXISTS calmconnect.refresh_tokens (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES calmconnect.users(id) ON DELETE CASCADE,
-    token TEXT NOT NULL UNIQUE,
-    expires_at TIMESTAMP NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+```text
+http://localhost:3000
 ```
 
-> 💡 **Note**: In development mode or fresh database initializations, the application's self-bootstrapping database service (`/backend/src/services/initDb.js`) will automatically provision this SQL schema if it doesn't already exist.
+## Available Scripts
 
----
+### Backend
 
-### ⚙️ Environment Variables `.env` Setup
-Ensure your `/backend/.env` contains the access token expiration flag:
-
-```env
-# Cryptographic Token Signer
-JWT_SECRET="generate_a_secure_long_random_string_here"
-JWT_EXPIRES_IN="15m"                           # Access Token (short-lived, stored in localStorage)
+```bash
+npm run dev     # Start Express with nodemon
+npm start       # Start Express with node
 ```
 
----
+### Frontend
 
-### 🔄 How Authenticated Requests Work (Step-by-Step)
-
-Here is exactly how the access and refresh token logic coordinates under the hood:
-
-```
-[ Frontend Client ]                                             [ Express API & DB ]
-        |                                                                |
-        |--- (1) POST /api/auth/login ---------------------------------->|
-        |<-- (2) JSON: { token (15m), refreshToken (7d), user } ---------|  <-- Inserts Refresh Token in DB
-        |                                                                |
-        |--- (3) GET /api/mood (with Authorization: Bearer token) ------>|
-        |<-- (4) HTTP 200: Mood Logs ------------------------------------|  <-- Valid access token
-        |                                                                |
- [15 minutes pass...]                                                    |
-        |                                                                |
-        |--- (5) GET /api/mood (with Authorization: Bearer token) ------>|
-        |<-- (6) HTTP 401: Unauthorized/Expired -------------------------|  <-- Token rejected
-        |                                                                |
-        |--- (7) POST /api/auth/refresh (Body: { refreshToken }) ------->|  <-- Automatically intercept 401
-        |                                                                |   * database lookup & validity verify
-        |                                                                |   * account blocked state validation
-        |                                                                |   * rotate & invalidate old token
-        |<-- (8) HTTP 200: { token (new 15m), refreshToken (new 7d) } ---|  <-- Registers new tokens
-        |                                                                |
-        |--- (9) Retry: GET /api/mood (with new token) ----------------->|
-        |<-- (10) HTTP 200: Mood Logs -----------------------------------|  <-- Transparent to the end-user!
+```bash
+npm run dev     # Start Vite development server
+npm run build   # Build production assets
+npm run preview # Preview the production build
+npm run lint    # Run TypeScript checks
 ```
 
-1. **User Login**: The user authenticates at `/api/auth/login`. The server verifies user credentials, generates a new JWT token valid for 15 minutes, creates a cryptographically secure random 40-byte hex refresh token valid for 7 days, stores the refresh token alongside the `user_id` inside PostgreSQL, and delivers everything to the frontend.
-2. **Local Storage Persistence**: The frontend client receives the package and securely holds both tokens in standard browser `localStorage`.
-3. **Daily Requests**: For every API call, the client's `apiFetch` helper injects the JWT access token in the standard HTTP `Authorization` header.
-4. **Expirations**: If an API call comes back with a `401 Unauthorized` response due to an expired access token, the client's network layer automatically intercepts the error.
-5. **Background Token Refresh**: The client executes a background POST request to `/api/auth/refresh` submitting the stored `refreshToken`.
-6. **Token Verification & Rotation (Replay Attack Prevention)**: 
-   * The server queries the database for the submitted token.
-   * If found and unexpired, the server verifies that the associated user's account status is currently active (not blocked).
-   * To prevent any prospective replay attacks, **Token Rotation** is performed: the old refresh token is physically deleted, a fresh 7-day refresh token is written to PostgreSQL, a fresh 15-minute access token is minted, and both are sent back to the client.
-7. **Transparent Resilience**: The client stores the updated credentials in `localStorage` and retries the original failed user request instantly. Perfect security, Zero user friction!
-8. **Logout**: When the user explicitly logs out, both client-side storage keys are cleared and the backend promptly purges the refresh token record from the database to ensure session termination.
+## API Overview
 
-### ⏱️ Token Lifespan Overview
-| Token Type | Value Style | Kept In | Lifespan | Verification Mode | Revocation Speed |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Access Token** | JWT | Local Storage | **15 Minutes** | Cryptographic signature decryption checking | Instant once expired (15 min) |
-| **Refresh Token** | Opaque Hex | DB & Local Storage | **7 Days** | Full database lookup & expiry stamp calculation | **Immediate (Real-Time)** on backend delete |
+All backend routes are mounted under `/api`.
 
----
+| Prefix | Purpose |
+| --- | --- |
+| `/api/auth` | Register, login, refresh token, email verification, password reset, logout |
+| `/api/users` | Current user profile, user administration, psychiatrist creation, activity logs |
+| `/api/mood` | Mood entry creation and history |
+| `/api/journal` | Private journal entries |
+| `/api/cbt` | CBT thought records and AI journal prompts |
+| `/api/chat` | AI companion chat sessions and messages |
+| `/api/conversations` | Direct patient-psychiatrist conversations |
+| `/api/appointments` | Appointment creation, cancellation, completion, and seen state |
+| `/api/notifications` | Notification listing, read state, and deletion |
+| `/api/feedback` | User feedback and admin feedback review |
+| `/api/reports` | User reports and admin report status updates |
+| `/api/motivation` | Motivational content |
+| `/api/forum` | Forum posts and comments |
 
-## 🛡️ Trust & Verification Loops
+Authenticated endpoints expect:
 
-CalmConnect AI treats user safety and mental privacy with great care. All patient registration entries require validation through Nodemailer token verification endpoints (`/verify-email`) before profile features are unlocked. The built-in emergency mechanics feature automated warning panels with accessible safety lines that are easy to consult during times of crisis.
+```text
+Authorization: Bearer <JWT_TOKEN>
+```
 
----
+## Authentication Flow
 
-## 📄 License
+The backend uses short-lived JWT access tokens and database-backed opaque refresh tokens.
 
-This repository is distributed under the guidelines of the **MIT License**.
+1. User logs in through `/api/auth/login`.
+2. Backend returns an access token, refresh token, and user payload.
+3. Frontend sends the access token in the `Authorization` header.
+4. If the access token expires, `/api/auth/refresh` can exchange a valid refresh token for a new token pair.
+5. Refresh tokens are stored in PostgreSQL so sessions can be invalidated when a user logs out, is blocked, or deletes the account.
+
+## Database Notes
+
+The backend uses `DATABASE_URL` through `Backend/src/services/db.js`.
+
+The repository also includes:
+
+```text
+Backend/schema.sql
+```
+
+Use this file as the manual database reference if you need to inspect or create schema objects outside the automatic initialization flow.
+
+## License
+
+This project is distributed under the MIT License.
